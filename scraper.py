@@ -21,11 +21,7 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.content, "html.parser")
 
-samples = soup.find_all("h3")
+# start with dictionary of days games played on, each mapped to a list of games 
+# (each game being a list of two teams)
 
-games = soup.find_all("p", "game")
-
-for game in games:
-
-	
-
+dates = soup.find_all("h3")
