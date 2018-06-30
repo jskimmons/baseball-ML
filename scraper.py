@@ -21,7 +21,13 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.content, "html.parser")
 
-# start with dictionary of days games played on, each mapped to a list of games 
-# (each game being a list of two teams)
+# get list of links to populate datasheet with
 
-dates = soup.find_all("h3")
+link_list = []
+
+for em in soup.find_all("em"):
+	for a in em.find_all("a"):
+		link_list.append(a.get("href"))
+
+print(len(link_list))
+
