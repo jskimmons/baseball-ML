@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup, Comment
+import numpy as np
+import pandas as pd
 
 years_list = ["2015", "2016", "2017", "2018"]
 
@@ -53,3 +55,24 @@ for comment in comments:
 
 # batting in [1] and [2]
 # pitching in [3]
+
+tSelect = int(input("Which table?\n"))
+
+while tSelect != 0:
+	
+	statSelect = input("Which stat?\n")
+
+	for t in tables[tSelect].find_all("tfoot"):
+		try:
+			print(t.find("td", {'data-stat' : statSelect}).getText())
+		except AttributeError as e:
+			print("Stat not found")
+
+	tSelect = int(input("Which table?\n"))
+
+
+# build np array
+
+data = np.array([['game_id', 't1_batAvg', 't2_batAvg']])
+
+data = np.vstack(data, [])
