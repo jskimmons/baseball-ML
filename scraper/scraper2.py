@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup, Comment
 import numpy as np
 import pandas as pd
-import dataAnalysis
+import matplotlib.pyplot as plt
 
 years_list = ["2015", "2016", "2017", "2018"]
 
@@ -32,19 +32,27 @@ for em in soup.find_all("em"):
 	for a in em.find_all("a"):
 		link_list.append(a.get("href"))
 
-cols = ['game_id', 't1_name', 't2_name', 't1_batAvg', 't2_batAvg', 't1_OBP', 't2_OBP', 't1_winner?']
+cols = ['game_id', 'date', 't1_name', 't2_name', 't1_batAvg', 't2_batAvg', 't1_OBP', 't2_OBP', 't1_OPS', 't2_OPS', 't1_slug', 't2_slug', 't2_ERA', 't2_ERA', 't1_winner?']
 
 data = np.array([cols])
 
-for i in range(0, 2):
+fp = open('test.txt', 'w')
+
+g = int(input("How many games? \n"))
+
+for i in range(0, g):
 
 	boxScore_url = "https://www.baseball-reference.com{}".format(link_list[i])
 
 	page = requests.get(boxScore_url).text
 
-	com_soup = BeautifulSoup(page, "lxml")
+	soup = BeautifulSoup(page, "lxml")
+
+	# get date
+
+	date = soup.find("div", {"class" : "scorebox_meta"}).find_all("div")[0].getText()
 	
-	comments=com_soup.find_all(string=lambda text:isinstance(text, Comment))
+	comments=soup.find_all(string=lambda text:isinstance(text, Comment))
 	
 	tables = []
 	
@@ -67,29 +75,37 @@ for i in range(0, 2):
 	t1_winner = 0
 	if winner == t1_name:
 		t1_winner = 1
+
+	# batting
 	
 	t = tables[1].find("tfoot")
 	t1_batAvg = t.find("td", {'data-stat' : 'batting_avg'}).getText()
 	t1_OBP = t.find("td", {'data-stat' : 'onbase_perc'}).getText()
+	t1_slug = t.find("td", {'data-stat' : 'slugging_perc'}).getText()
+	t1_OPS = t.find("td", {'data-stat' : 'onbase_plus_slugging'}).getText()
 
 	t = tables[2].find("tfoot")
 	t2_batAvg = t.find("td", {'data-stat' : 'batting_avg'}).getText()
 	t2_OBP = t.find("td", {'data-stat' : 'onbase_perc'}).getText()
+	t2_slug = t.find("td", {'data-stat' : 'slugging_perc'}).getText()
+	t2_OPS = t.find("td", {'data-stat' : 'onbase_plus_slugging'}).getText()
+
+
+	# pitching
+
+	pitch_list = tables[3].find_all("tfoot")
+	t1_era = pitch_list[0].find("td", {"data-stat" : "earned_run_avg"}).getText()
+	t2_era = pitch_list[1].find("td", {"data-stat" : "earned_run_avg"}).getText()
 
 
 	# build np array
 
-	data = np.vstack([data, [i, t1_name, t2_name, float(t1_batAvg), float(t2_batAvg), float(t1_OBP), float(t2_OBP), int(t1_winner)]])
+	data = np.vstack([data, [i, date, t1_name, t2_name, float(t1_batAvg), float(t2_batAvg), float(t1_OBP), float(t2_OBP), float(t1_OPS), float(t2_OPS), float(t1_slug), float(t2_slug), float(t2_era), float(t2_era), int(t1_winner)]])
 
-	print(i)
+	print("processing game {}...".format(i))
 
 
 
 df = pd.DataFrame(data=data[1:,1:],
                   index=data[1:,0],
                   columns=data[0,1:])
-
-dA = dataAnalysis(df)
-
-
-print(dA.data)

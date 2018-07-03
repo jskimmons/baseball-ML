@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import scraper.scraper2
 
 
 class DataAnalysis(object):
