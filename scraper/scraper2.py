@@ -35,7 +35,9 @@ cols = ['game_id', 't1_name', 't2_name', 't1_batAvg', 't2_batAvg', 't1_OBP', 't2
 
 data = np.array([cols])
 
-for i in range(0, 2):
+i = 0
+
+for i in range(0, 100):
 
 	boxScore_url = "https://www.baseball-reference.com{}".format(link_list[i])
 
@@ -76,19 +78,16 @@ for i in range(0, 2):
 	t2_OBP = t.find("td", {'data-stat' : 'onbase_perc'}).getText()
 
 
+
+
 	# build np array
 
-	data = np.vstack([data, [i, t1_name, t2_name, float(t1_batAvg), float(t2_batAvg), float(t1_OBP), float(t2_OBP), int(t1_winner)]])
+	data = np.vstack([data, [i, t1_name, t2_name, t1_batAvg, t2_batAvg, t1_OBP, t2_OBP, t1_winner]])
 
-	print(i)
-
-
+	print(".")
 
 df = pd.DataFrame(data=data[1:,1:],
                   index=data[1:,0],
                   columns=data[0,1:])
 
-dA = dataAnalysis(df)
-
-
-print(dA.data)
+print(df)
