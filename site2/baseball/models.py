@@ -4,7 +4,7 @@ from django.db import models
 
 class Game(models.Model):
 
-    date = models.DateField()
+    date = models.CharField(max_length = 200)
 
     t1_name = models.CharField(max_length = 10)
     t2_name = models.CharField(max_length = 10)
@@ -31,10 +31,10 @@ class Game(models.Model):
 
         return "{} vs {} on {}".format(self.t1_name, self.t2_name, self.date)
 
-    class Meta:
-        
-        ordering = ['date']
-
-    class Admin:
-        
-        pass
+#    class Meta:
+#        
+#        ordering = ['date']
+#
+#    class Admin:
+#        
+#        pass

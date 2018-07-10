@@ -1,0 +1,18 @@
+{% if game %}
+    <ul>
+        <h1>{{game}}</h1>
+        <h3>t1_batAvg: {{game.t1_batAvg}}</h3>
+        <h3>t2_batAvg: {{game.t2_batAvg}}</h3>
+        <h3>t1_OBP: {{game.t1_OBP}}</h3>
+        <h3>t2_OBP: {{game.t2_OBP}}</h3>
+        <h3>t1_OPS: {{game.t1_OPS}}</h3>
+        <h3>t2_OPS: {{game.t2_OPS}}</h3>
+        <h3>t1_slug: {{game.t1_slug}}</h3>
+        <h3>t2_slug: {{game.t2_slug}}</h3>
+        <h3>t1_ERA: {{game.t1_ERA}}</h3>
+        <h3>t2_ERA: {{game.t2_ERA}}</h3>
+        <h3>t1_winner?: {{game.t1_winner}}</h3>
+    </ul>
+{% else %}
+    <p>No information found.</p>
+{% endif %}
