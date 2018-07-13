@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup, Comment
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
 years_list = ["2015", "2016", "2017", "2018"]
 
@@ -20,6 +20,9 @@ soup_list = []
 # for soup in soup_list:
 
 def scrape(g):
+	'''
+		Returns dataframe
+	'''
 
 	url = "https://www.baseball-reference.com/leagues/MLB/2017-schedule.shtml"
 
@@ -45,7 +48,7 @@ def scrape(g):
 
 	# g = int(input("How many games? \n"))
 
-	for i in range(0, g + 1):
+	for i in range(1000, g + 1001):
 
 		boxScore_url = "https://www.baseball-reference.com{}".format(link_list[i])
 
