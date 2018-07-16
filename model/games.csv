@@ -1,4 +1,4 @@
-,date,t1_name,t2_name,t1_batAvg,t2_batAvg,t1_OBP,t2_OBP,t1_OPS,t2_OPS,t1_slug,t2_slug,t1_ERA,t2_ERA,t1_winner?
+id ,date,t1_name,t2_name,t1_batAvg,t2_batAvg,t1_OBP,t2_OBP,t1_OPS,t2_OPS,t1_slug,t2_slug,t1_ERA,t2_ERA,t1_winner?
 1000,"Friday, June 16, 2017",ARI,PHI,0.324,0.156,0.366,0.206,0.825,0.55,0.459,0.344,2.0,5.0,1
 1001,"Friday, June 16, 2017",CHC,PIT,0.297,0.229,0.366,0.308,0.825,0.708,0.459,0.4,5.0,9.0,1
 1002,"Friday, June 16, 2017",SEA,TEX,0.212,0.333,0.278,0.429,0.581,1.012,0.303,0.583,7.88,4.0,0

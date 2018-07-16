@@ -7,4 +7,5 @@ urlpatterns = [
 	path('<int:num_games>/', views.load, name='load'),
 	path('games/', views.detail, name='detail'),
 	path('games/<int:game_id>/', views.specific, name='specific'),
+	path('predict/', views.predict, name='predict'),
 ]

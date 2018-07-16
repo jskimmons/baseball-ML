@@ -52,6 +52,10 @@ def specific(request, game_id):
 
 	return render(request, 'baseball/specific.html', context)
 
+def predict(request):
+
+	
+
 
 
 
