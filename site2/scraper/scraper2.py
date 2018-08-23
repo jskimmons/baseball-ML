@@ -107,8 +107,6 @@ def scrape(g):
 
 		data = np.vstack([data, [i, date, t1_name, t2_name, t1_batAvg, t2_batAvg, t1_OBP, t2_OBP, t1_OPS, t2_OPS, t1_slug, t2_slug, t1_era, t2_era, t1_winner]])
 
-		# data2 = np.vstack([data2, [i, t1_batAvg, t2_batAvg, t1_OBP, t2_OBP, t1_OPS, t2_OPS, t1_slug, t2_slug, t1_era, t2_era, t1_winner]])
-
 		print("processing game {}...".format(i))
 
 
@@ -116,13 +114,6 @@ def scrape(g):
 	df = pd.DataFrame(data=data[1:,1:],
 	                  index=data[1:,0],
 	                  columns=data[0,1:])
-	# df2 = pd.DataFrame(data=data2[1:,1:],
-	#                   index=data2[1:,0],
-	#                   columns=data2[0,1:],
-	#                   dtype=float)
-
-	# print(df)
-	# print(df2)
 
 	# df['date']  = df['date']
 	df['t1_batAvg'] = df['t1_batAvg'].astype(float)
@@ -139,20 +130,6 @@ def scrape(g):
 
 
 	return df
-
-# print(df.groupby('t1_winner?').mean())
-
-# print(df.dtypes)
-
-# plt.rc("font", size=14)
-
-# sns.set(style="white")
-# sns.set(style="whitegrid", color_codes=True)
-
-# print(df['t1_winner?'].value_counts())
-# sns.countplot(x='t1_winner?', data=df, palette='hls')
-# plt.show()
-# plt.savefig('count_plot')
 
 if __name__ == '__main__':
 	print(scrape(1))
