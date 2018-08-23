@@ -32,8 +32,6 @@ class Game(models.Model):
 
 class TodayGame(models.Model):
 
-    date = models.CharField(max_length = 200)
-
     t1_name = models.CharField(max_length = 10)
     t2_name = models.CharField(max_length = 10)
 
@@ -52,8 +50,10 @@ class TodayGame(models.Model):
     t1_ERA = models.FloatField()
     t2_ERA = models.FloatField()
 
-    prediction = models.CharField(max_length = 10)
+    predictionInt = models.FloatField()
+
+    predictionTeam = models.CharField(max_length = 10)
 
 
     def __str__(self):
-        return "{} vs {}".format(self.t1_name, self.t2_name)
+        return "{} vs {}, Prediction: {}".format(self.t1_name, self.t2_name, self.predictionTeam)

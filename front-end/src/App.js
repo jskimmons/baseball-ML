@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 import Logger from 'simple-console-logger';
 
-import HelloContainer from './hello/HelloContainer';
+import ApiTestComponent from './games/ApiTestComponent';
 
 Logger.configure({level: 'debug'});
 
@@ -20,10 +20,7 @@ class App extends Component {
       <Provider store={this.props.store}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/hello" render={(props) => (
-              <HelloContainer />
-            )}/>
-            <Route path="/" component={HelloContainer} />
+              <ApiTestComponent />
           </Switch>
         </BrowserRouter>  
       </Provider>

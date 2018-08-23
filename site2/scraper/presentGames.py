@@ -7,6 +7,8 @@ import re
 
 def todayGames():
 
+    print("Getting todays games")
+
     year = 2018
     
     url = "https://www.baseball-reference.com/leagues/MLB/{}-schedule.shtml".format(year)
@@ -54,8 +56,8 @@ def todayGames():
 
         team_list = soup.find_all("h2", text=re.compile("Last 10 Games"))
 
-        t1_name = team_list[0].getText()[0:4]
-        t2_name = team_list[1].getText()[0:4]
+        t1_name = team_list[0].getText()[0:3]
+        t2_name = team_list[1].getText()[0:3]
 
 	    # batting
 		
