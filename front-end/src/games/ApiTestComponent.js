@@ -5,7 +5,7 @@ class ApiTestComponent extends React.Component {
     getGames = () => {
         // get currently saved css
         fetch('/baseball/games')
-        //.then(response => response.json())
+        .then(response => response.json())
         .then(response => {
             console.log(response);
         })
