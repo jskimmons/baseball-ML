@@ -13,11 +13,11 @@ from rest_framework import viewsets
 from .serializers import TodayGameSerializer
 
 class TodayGameViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows today's games to be viewed or edited.
-    """
-    queryset = TodayGame.objects.all()
-    serializer_class = TodayGameSerializer
+	"""
+	API endpoint that allows today's games to be viewed or edited.
+	"""
+	queryset = TodayGame.objects.all()
+	serializer_class = TodayGameSerializer
 
 
 def getPredictions(request):

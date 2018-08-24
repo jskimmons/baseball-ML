@@ -10,7 +10,7 @@ router = routers.DefaultRouter()
 router.register(r'games', views.TodayGameViewSet)
 
 urlpatterns = [
-	path('predict/', views.predict, name='predict'),
-	path('results/', views.getPredictions, name='results'),
-	url(r'^', include(router.urls)),
+    path('predict/', views.predict, name='predict'),
+    path('results/', views.getPredictions, name='results'),
+    url(r'^', include(router.urls)),
 ]
